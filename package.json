@@ -1,0 +1,19 @@
+{
+  "name": "cql-teacher-client",
+  "version": "1.0.0",
+  "description": "Proyecto 1 de compiladores 2. Universidad de San Carlos de Guatemala",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wolfghost9898/cql-teacher-client.git"
+  },
+  "author": "Carlos Hernandez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wolfghost9898/cql-teacher-client/issues"
+  },
+  "homepage": "https://github.com/wolfghost9898/cql-teacher-client#readme"
+}
