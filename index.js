@@ -22,6 +22,10 @@ app.get("/",function(solictud,respuesta){
     respuesta.sendFile(path.join(__dirname + '/public/Pages/login.html'));
 });
 
+//----------------------------------------------- Pagina donde se escogera la dificultad -------------------------
+app.get("/dificultad", function(req, res){
+    res.sendFile(path.join(__dirname + '/public/Pages/dificultad.html'));
+});
 
 //--------------------------------------- Pagina de error-------------------------------------------
 app.get('*',function(solictud,respuesta){
