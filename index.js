@@ -4,6 +4,8 @@ const express = require('express');
 
 const app = express();
 
+const path = require('path');
+
 const server=require('http').createServer(app);
 
 
@@ -17,7 +19,7 @@ app.use(express.static('public'));
 
 
 app.get("/",function(solictud,respuesta){
-    respuesta.sendFile(path.join(__dirname + '/public/Pages/Login.html'));
+    respuesta.sendFile(path.join(__dirname + '/public/Pages/login.html'));
 });
 
 

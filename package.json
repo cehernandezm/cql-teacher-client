@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/wolfghost9898/cql-teacher-client#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "path": "^0.12.7"
   }
 }
