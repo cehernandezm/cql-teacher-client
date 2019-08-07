@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/wolfghost9898/cql-teacher-client/issues"
   },
-  "homepage": "https://github.com/wolfghost9898/cql-teacher-client#readme"
+  "homepage": "https://github.com/wolfghost9898/cql-teacher-client#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
