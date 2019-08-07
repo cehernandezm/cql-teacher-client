@@ -27,6 +27,11 @@ app.get("/dificultad", function(req, res){
     res.sendFile(path.join(__dirname + '/public/Pages/dificultad.html'));
 });
 
+//----------------------------------------------- Pagina para principiantes -----------------------------------------
+app.get("/principiante", function(req, res){
+    res.sendFile(path.join(__dirname + '/public/Pages/principiante.html'));
+});
+
 //--------------------------------------- Pagina de error-------------------------------------------
 app.get('*',function(solictud,respuesta){
     respuesta.send("Error 404");
