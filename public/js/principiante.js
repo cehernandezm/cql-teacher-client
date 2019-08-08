@@ -27,40 +27,33 @@ var tablas = [
 ];
 
 /*---------------------------------------------------------------------------------------------------------------
-------------------------------------------------- BLOCKLY PARA SQL----------------------------------------------- 
+------------------------------------------------- BLOCKLY PARA CQL----------------------------------------------- 
 ---------------------------------------------------------------------------------------------------------------*/
 
-Blockly.defineBlocksWithJsonArray([
-    //---------------------------------------------- SELECT----------------------------------------------------------
-    {
-        "type":"select",
-        "message0" : "SELECT %1 FROM %2 ",
+//--------------------------------------- SELECT ----------------------------------------------------------------
+
+Blockly.Blocks['Select'] = {
+    init: function() {
+      this.jsonInit({
+        "type": "block_type",
+        "message0": "SELECT %1 WHERE %2",
         "args0": [
-            {
-                "type" : "field_input",
-                "name": "CAMPOS",
-                "text": "*",
-                "check" : "String"
-            },
-            {
-                "type" : "field_input",
-                "name": "TABLA",
-                "text": "tablename",
-                "check" : "String"
-            }
-
+          {
+            "type": "input_statement",
+            "name": "NAME",
+            "align": "RIGHT"
+          },
+          {
+            "type": "input_value",
+            "name": "NAME"
+          }
         ],
-        
-    "previousStatement": null,
-    "nextStatement": null,
-    "colour": 355,
-    "tooltip": "",
-    "helpUrl": ""
-    },
-    
-]);
-
-
+        "colour": 150,
+        "tooltip": "",
+        "helpUrl": ""
+        });
+    }
+  };
 
 //------------------------------------------ TABLAS --------------------------------------------------------------
 Blockly.Blocks['Tablas'] = {
@@ -75,7 +68,12 @@ Blockly.Blocks['Tablas'] = {
         
         this.appendDummyInput('dropDownField2')   
         .appendField(new Blockly.FieldDropdown(defaultlist2), 'Campos');       
-        var thisBlock = this;
+        
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(230);
+     this.setTooltip("");
+     this.setHelpUrl("");
     },
     onchange : function(e){
         //---------------- que si cambio un campo y no fue un click
