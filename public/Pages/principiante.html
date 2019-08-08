@@ -20,6 +20,11 @@
     <script src="../js/Blockly/blockly_compressed.js"></script>
     <script src="../js/Blockly/blocks_compressed.js"></script>
     <script src="../js/Blockly/es.js"></script>
+    <script src="../js/Blockly/javascript_compressed.js"></script>
+    <!--                     SQL BLOCKLY                     -->
+    <script src="../js/Componentes/sql.js"></script>
+    
+
     <script src="../js/principiante.js"></script>
     <title>Principiante</title>
 
@@ -54,6 +59,7 @@
       <!--                   DIV IZQUIERDO                -->  
       <div class="col-2" style="background-color: black;">
         Aqui aparecera las bases de datos
+        <button type="button" onclick="generarCodigo()">Generar</button> 
       </div>
       <!--                   DIV DERECHO            -->
       <div class="col-9" style="margin-left:50px;">
@@ -63,16 +69,14 @@
             <xml id="toolbox" style="display: none">
                 
                 <category name="Sentencias">
-                    <block type="Select"></block>
+                    <block type="select"></block>
                     
                 </category>
                 <category name="Atributos">
                     <block type="Tablas"></block>
+                    <block type="campo"></block> 
                 </category>
 
-                <category name="Operadores">
-                    
-                </category>
             </xml>
 
         </div>
@@ -83,6 +87,6 @@
         </div>
       </div>
     </div>
-    
+    <script src="../js/Componentes/generateCode.js"></script>
   </body>
 </html>
