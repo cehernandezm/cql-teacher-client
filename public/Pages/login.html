@@ -25,7 +25,8 @@
         <!-- --------------------------------------------- Verificar si existe cookie -------------------------------------------- -->
         <script>
             var cookie = document.cookie;
-            var username = (cookie.split('='))[1];
+            var dataU = cookie.split(";");
+            var username = ((dataU[0]).split('='))[1];
             
             if(username) window.location.href = '/dificultad';
             

@@ -4,7 +4,7 @@ function checkLogin(){
     let password = document.getElementById("password");
     if(user){
         if(user.value === 'admin' && password.value === 'admin'){
-            document.cookie = "username="+ user.value;
+            document.cookie = "username=" + user.value;
             window.location.href = '/dificultad'
         }
     }
