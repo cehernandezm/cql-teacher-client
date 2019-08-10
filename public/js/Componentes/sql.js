@@ -28,12 +28,35 @@ Blockly.Blocks["select"] = {
       .setCheck(null)
       .appendField("FROM");
     this.setNextStatement(true, null);
+    this.setPreviousStatement(true, null);
     this.setColour(230);
     this.setOutput(false, null);
     this.setTooltip("");
     this.setHelpUrl("");
   }
 };
+
+//---------------------------------------- SELECT WHERE ---------------------------------------------------------
+Blockly.Blocks["select2"] = {
+  init: function() {
+    this.appendValueInput("SELECT")
+      .setCheck("String")
+      .appendField("SELECT");
+    this.appendValueInput("FROM")
+      .setCheck(null)
+      .appendField("FROM");
+    this.appendValueInput("WHERE")
+      .setCheck(null)
+      .appendField("WHERE");
+    this.setNextStatement(true, null);
+    this.setPreviousStatement(true, null);
+    this.setColour(230);
+    this.setOutput(false, null);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
 //------------------------------------------ TABLAS --------------------------------------------------------------
 Blockly.Blocks["Tablas"] = {
   init: function() {
@@ -141,18 +164,6 @@ Blockly.Blocks["operaciones"] = {
     }
   };
 
-//--------------------------------------------------- WHERE --------------------------------------------------------------
-Blockly.Blocks["where"] = {
-  init: function() {
-    this.appendValueInput("WHERE")
-      .setCheck(null)
-      .appendField("WHERE");
-    this.setPreviousStatement(true, null);
-    this.setColour(230);
-    this.setTooltip("");
-    this.setHelpUrl("");
-  }
-};
 
 //-------------------------------------------------- valor puntual -----------------------------------------------------
 Blockly.Blocks["valor"] = {
@@ -182,6 +193,8 @@ Blockly.Blocks['insert1'] = {
         .appendField(")");
     this.setColour(230);
  this.setTooltip("");
+ this.setPreviousStatement(true, null);
+ this.setNextStatement(true, null);
  this.setHelpUrl("");
   }
 };
@@ -202,6 +215,8 @@ Blockly.Blocks['insert2'] = {
         .appendField(")");
     this.setColour(230);
  this.setTooltip("");
+ this.setPreviousStatement(true, null);
+ this.setNextStatement(true, null);
  this.setHelpUrl("");
   }
 };
@@ -218,6 +233,29 @@ Blockly.Blocks['update'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
  this.setTooltip("");
+ this.setPreviousStatement(true, null);
+ this.setNextStatement(true, null);
+ this.setHelpUrl("");
+  }
+};
+
+//--------------------------------------------------- UPDATE --------------------------------------------------------------------
+Blockly.Blocks['update2'] = {
+  init: function() {
+    this.appendValueInput("UPDATE")
+        .setCheck(null)
+        .appendField("UPDATE")
+        .appendField(new Blockly.FieldTextInput("TABLA"), "TABLA")
+        .appendField("SET");
+    this.appendDummyInput();
+    this.appendValueInput("WHERE")
+      .setCheck(null)
+      .appendField("WHERE");
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setPreviousStatement(true, null);
+ this.setNextStatement(true, null);
  this.setHelpUrl("");
   }
 };
@@ -248,9 +286,31 @@ Blockly.Blocks['delete'] = {
     this.setNextStatement(true, null);
     this.setColour(230);
  this.setTooltip("");
+ this.setPreviousStatement(true, null);
+ this.setNextStatement(true, null);
  this.setHelpUrl("");
   }
 };
+
+//----------------------------------------------------- DELETE2 -------------------------------------------------------------------
+
+Blockly.Blocks['delete2'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("DELETE FROM")
+        .appendField(new Blockly.FieldTextInput("TABLA"), "TABLA");
+    this.appendValueInput("WHERE")
+        .setCheck(null)
+        .appendField("WHERE");   
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setPreviousStatement(true, null);
+ this.setNextStatement(true, null);
+ this.setHelpUrl("");
+  }
+};
+
 
 
 function buscarListas(nombre) {
@@ -259,3 +319,85 @@ function buscarListas(nombre) {
   }
   return null;
 }
+
+
+/*--------------------------------------------------------- INTERMEDIO ------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------*/
+
+Blockly.Blocks['declaracion'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput("Tipo"), "Tipo")
+        .appendField("@")
+        .appendField(new Blockly.FieldTextInput("Nombre"), "Nombre")
+        .appendField(";");
+    this.setColour(290);
+ this.setTooltip("");
+ this.setPreviousStatement(true, null);
+ this.setNextStatement(true, null);
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['asignacion'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput("Nombre"), "Nombre")
+        .appendField("=");
+    this.appendValueInput("NAME")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField(";");
+    this.setColour(290);
+ this.setTooltip("");
+ this.setPreviousStatement(true, null);
+ this.setNextStatement(true, null);
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['if'] = {
+  init: function() {
+    this.appendValueInput("condicion")
+        .setCheck(null)
+        .appendField("If");
+    this.appendStatementInput("cuerpo")
+        .setCheck(null);
+    this.setNextStatement(true, null);
+    this.setColour(189);
+ this.setTooltip("");
+ this.setPreviousStatement(true, null);
+ this.setNextStatement(true, null);
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['elseif'] = {
+  init: function() {
+    this.appendValueInput("condicion")
+        .setCheck(null)
+        .appendField("else if");
+    this.appendStatementInput("cuerpo")
+        .setCheck(null);
+    this.setNextStatement(true, null);
+    this.setColour(189);
+ this.setTooltip("");
+ this.setPreviousStatement(true, null);
+ this.setNextStatement(true, null);
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['else'] = {
+  init: function() {
+    this.appendStatementInput("cuerpo")
+        .setCheck(null)
+        .appendField("else");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(189);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};

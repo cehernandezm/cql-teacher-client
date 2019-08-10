@@ -4,7 +4,8 @@ var prefEditor = {
     lineNumbres: true,
     mode: "text/x-sql",
     theme: "paraiso-dark",
-    readOnly: true
+    readOnly: true,
+    lineNumbers: true
 };
 
 var editor = document.getElementById("editor");

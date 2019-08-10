@@ -13,165 +13,139 @@ function generarCodigo(){
 
 //--------------------------------------------------------------------- SELECT----------------------------------------------------------
 Blockly.JavaScript['select'] = function(block) {
-    var code = "\nSELECT ";
-
-    //------------------------------------------------- CAMPOS EN SELECT --------------------------------------------------------------
-    if(block.childBlocks_[0])
-        code += getCampos(block.childBlocks_[0]);
-    code += "\n";
+    var code = "SELECT ";
+    let condicion = Blockly.JavaScript.valueToCode(block, 'SELECT', Blockly.JavaScript.ORDER_ATOMIC);
+    code += condicion +"\n";
     //-------------------------------------------------- CAMPOS DE FROM--------------------------------------------------------------------
 
-    code+= "FROM ";
-    if(block.childBlocks_[1]){
-        if(block.childBlocks_[1].getFieldValue('campo')) code += getCampos(block.childBlocks_[1]) + "\n";
-        else if(block.childBlocks_[1].getFieldValue('valor')) code +=  block.childBlocks_[1].getFieldValue('valor');
-    }
-    
-    //-------------------------------------------------- WHERE -----------------------------------------------------------------------------
-    if(block.childBlocks_[2]){
-        code += "\nWHERE "; 
-        if(block.childBlocks_[2].childBlocks_[0]) code += resolverOperacion(block.childBlocks_[2].childBlocks_[0]);
-        
-    }   
-    code += ";";
+    let tabla = Blockly.JavaScript.valueToCode(block, 'FROM', Blockly.JavaScript.ORDER_ATOMIC);
+    code+= "FROM " + tabla +";\n";
+    return code;
+};
+
+//--------------------------------------------------------------------- SELECT 2----------------------------------------------------------
+Blockly.JavaScript['select2'] = function(block) {
+    var code = "SELECT ";
+    let condicion = Blockly.JavaScript.valueToCode(block, 'SELECT', Blockly.JavaScript.ORDER_ATOMIC);
+    code += condicion +"\n";
+    //-------------------------------------------------- CAMPOS DE FROM--------------------------------------------------------------------
+
+    let tabla = Blockly.JavaScript.valueToCode(block, 'FROM', Blockly.JavaScript.ORDER_ATOMIC);
+    code += "FROM " + tabla +"\n";
+
+    let condicion2  = Blockly.JavaScript.valueToCode(block, 'WHERE', Blockly.JavaScript.ORDER_ATOMIC);
+    code += "WHERE " + condicion2 + ";\n";
     return code;
 };
 
 
-//----------------------------------------------------------------------- WHERE ---------------------------------------------------------------
-Blockly.JavaScript['where'] = function(block){
-    return "";
-}
-
 //----------------------------------------------------------------------- INSERT1 -----------------------------------------------
 Blockly.JavaScript['insert1'] = function(block){
-    let code = "\nINSERT INTO " + block.getFieldValue("TABLA") + " VALUES(";
-    if(block.childBlocks_[0]) code += " " + getCampos(block.childBlocks_[0]);
-    code += " );\n";
+    let code = "INSERT INTO " + block.getFieldValue("TABLA") + " VALUES(";
+    let valores  = Blockly.JavaScript.valueToCode(block, 'WHERE', Blockly.JavaScript.ORDER_ATOMIC);
+    code += valores + ");\n";
     return code;
 }
 
 //----------------------------------------------------------------------- INSERT2-------------------------------------------------
 Blockly.JavaScript['insert2'] = function(block){
-    let code = "\nINSERT INTO " + block.getFieldValue("TABLA") + " ( ";
-    if(block.childBlocks_[0]) code += getCampos(block.childBlocks_[0]);
-    code += " ) VALUES( ";
-    if(block.childBlocks_[1]) code += getCampos(block.childBlocks_[1]);
-    code += ");\n";
+    let code = "INSERT INTO " + block.getFieldValue("TABLA") + " (";
+    let campos  = Blockly.JavaScript.valueToCode(block, 'INSERT', Blockly.JavaScript.ORDER_ATOMIC);
+    code += campos + ") VALUES(";
+    let valores  = Blockly.JavaScript.valueToCode(block, 'VALUES', Blockly.JavaScript.ORDER_ATOMIC);
+    code += valores + ");\n";
     return code;
 }
 
-//--------------------------------------------------------------------------- resolver las operaciones ---------------------------------------------------
-function resolverOperacion(operacion){
-    if(operacion.getFieldValue("valor")) return operacion.getFieldValue("valor");
-    else if (operacion.getFieldValue("OPERA")){
-        let opera1 = null;
-        let opera2 = null;
-        let operando = operacion.getFieldValue("OPERA");
-        if(operacion.childBlocks_[0]) opera1 = resolverOperacion(operacion.childBlocks_[0]);
-        if(operacion.childBlocks_[1]) opera2 = resolverOperacion(operacion.childBlocks_[1]);
-        return opera1 + " " + operando + " " + opera2;
-    }else if(operacion.getFieldValue("ARITMETICA")){
-        let opera1 = null;
-        let opera2 = null;
-        let operando = operacion.getFieldValue("ARITMETICA");
-        if(operacion.childBlocks_[0]) opera1 = resolverOperacion(operacion.childBlocks_[0]);
-        if(operacion.childBlocks_[1]) opera2 = resolverOperacion(operacion.childBlocks_[1]);
-        return opera1 + " " + operando + " " + opera2;
-    }
-    return "";
-}
 
 
 
 //------------------------------------------------------------- UPDATE ---------------------------------
 Blockly.JavaScript['update'] = function(block){
-    let code = "\nUPDATE " + block.getFieldValue("TABLA") + " SET ";
-    if(block.childBlocks_[0]) code += getSet(block.childBlocks_[0]);
-    //-------------------------------------------------- WHERE -----------------------------------------------------------------------------
-    if(block.childBlocks_[1]){
-        code += "\nWHERE "; 
-        if(block.childBlocks_[1].childBlocks_[0]) code += resolverOperacion(block.childBlocks_[1].childBlocks_[0]);
-        
-    }   
-    code += ";";
+    let code = "UPDATE " + block.getFieldValue("TABLA") + " SET ";
+    let valores  = Blockly.JavaScript.valueToCode(block, 'UPDATE', Blockly.JavaScript.ORDER_ATOMIC);
+    code += valores + ";\n";
+    return code;
+}
+
+//------------------------------------------------------------- UPDATE 2---------------------------------
+Blockly.JavaScript['update2'] = function(block){
+    let code = "UPDATE " + block.getFieldValue("TABLA") + " SET ";
+    let valores  = Blockly.JavaScript.valueToCode(block, 'UPDATE', Blockly.JavaScript.ORDER_ATOMIC);
+    let condicion = Blockly.JavaScript.valueToCode(block, 'WHERE', Blockly.JavaScript.ORDER_ATOMIC);
+    code += valores + "\nWHERE " + condicion + ";\n";
     return code;
 }
 
 
 //----------------------------------------------------- DELETE --------------------------------------------
 Blockly.JavaScript['delete'] = function(block){
-    let code = "\nDELETE FROM " + block.getFieldValue("TABLA");
-    if(block.childBlocks_[0].childBlocks_[0]) code += " " + resolverOperacion(block.childBlocks_[0].childBlocks_[0]);
-    code += ";";
+    let code = "DELETE FROM " + block.getFieldValue("TABLA");
+    code += ";\n";
+    return code;
+}
+
+//----------------------------------------------------- DELETE2 --------------------------------------------
+Blockly.JavaScript['delete2'] = function(block){
+    let code = "DELETE FROM " + block.getFieldValue("TABLA") + "\n";
+    let condicion = Blockly.JavaScript.valueToCode(block, 'WHERE', Blockly.JavaScript.ORDER_ATOMIC);
+    code += "WHERE " + condicion +";\n";
     return code;
 }
 
 
-//------------------------------------------------ concatena los campos de un select ------------------------------------------------------------
-function getCampos(hijo){
-  let code = "";
-  if( hijo.getFieldValue("campo") ) code = hijo.getFieldValue("campo");
-  else if( hijo.getFieldValue("valor") ) code = hijo.getFieldValue("valor");
-  else if( hijo.getFieldValue("Tabla")){
-    let tabla = hijo.getFieldValue('Tabla');
-    let campo = hijo.getFieldValue('Campos');
-    code = tabla + "." + campo;
-  }
-  if(hijo.childBlocks_[0])
-    if(hijo.childBlocks_[0].getFieldValue("campo") || hijo.childBlocks_[0].getFieldValue("valor") || hijo.childBlocks_[0].getFieldValue('Tabla') ) code += "," + getCampos(hijo.childBlocks_[0]);
-  
-    
-
-  return code;
-}
-
-//------------------------------------------------- regresar un set a un update -----------------------------------------------
-function getSet(nodo){
-    let code = "";
-    if(nodo.getFieldValue("campoUpdate")){
-        let campo = nodo.getFieldValue("campoUpdate");
-        let valor = nodo.getFieldValue("valorUpdate");
-
-        code += campo + " = " + valor;
-
-        if(nodo.childBlocks_[0]) code += ",\n" + getSet(nodo.childBlocks_[0]);
-    }
-    return code;
-}
 
 
-//--------------------------------------------------------- No tiene traduccion aparte solo en conjunto con otras -----------------------------------
-Blockly.JavaScript['set'] = function(block){
-    return "";
-}
 
+//---------------------------------------------------- regresar un valor --------------------------------------------------
 Blockly.JavaScript['valor'] = function(block){
-    return "";
+    return [block.getFieldValue("valor"),Blockly.JavaScript.ORDER_ATOMIC];
 }
 
-Blockly.JavaScript['Tablas'] = function(block){
-    return "";
-}
-
-Blockly.JavaScript['operaciones'] = function(block){
-    return "";
-}
-Blockly.JavaScript['condicion'] = function(block){
-    return "";
-}
-
+//--------------------------------------------------------- retorna los valores de un campo -------------------------------------------
 Blockly.JavaScript['campo'] = function(block) {
-    return "";
+    let valor = block.getFieldValue("campo");
+    let con = Blockly.JavaScript.valueToCode(block, 'VALUE', Blockly.JavaScript.ORDER_ATOMIC);
+    if(con) valor += ", " + con;
+    return [valor,Blockly.JavaScript.ORDER_ATOMIC];
 };
 
+//------------------------------------------------------------ Regresa tabla y campo -----------------------------------------------------
+Blockly.JavaScript['Tablas'] = function(block){
+    let code = "";
+    let tabla = block.getFieldValue('Tabla');
+    let campo = block.getFieldValue('Campos');
+    code = tabla + "." + campo;
+    return [code,Blockly.JavaScript.ORDER_ATOMIC];
+}
 
-//------------------------------------------------ concatena las tablas de un select ------------------------------------------------------------
-function getTablas(hijo){
-    let code = hijo.getFieldValue("campo");
-    if(hijo.childBlocks_.length > 1) code += "," + getTablas(hijo.childBlocks_[1]);
-    return code;
-  }
+//------------------------------------------------------- CONDICION <,>.... ------------------------------------------------
+Blockly.JavaScript['condicion'] = function(block){
+    let operando = block.getFieldValue("OPERA");
+    let opera1 = Blockly.JavaScript.valueToCode(block, 'Op1', Blockly.JavaScript.ORDER_ATOMIC);
+    let opera2 = Blockly.JavaScript.valueToCode(block, 'op2', Blockly.JavaScript.ORDER_ATOMIC);
+    let code = opera1 + " " + operando + " " + opera2;
+    return [code,Blockly.JavaScript.ORDER_NONE];
+}
+
+//---------------------------------------------------------- RESOLVER OPERACIONES -------------------------------------------
+Blockly.JavaScript['operaciones'] = function(block){
+    let operando = block.getFieldValue("ARITMETICA");
+    let opera1 = Blockly.JavaScript.valueToCode(block, 'Op1', Blockly.JavaScript.ORDER_ATOMIC);
+    let opera2 = Blockly.JavaScript.valueToCode(block, 'op2', Blockly.JavaScript.ORDER_ATOMIC);
+    let code = opera1 + " " + operando + " " + opera2;
+    return [code,Blockly.JavaScript.ORDER_NONE];
+}
+
+//----------------------------------------------------------- Para update ----------------------------------------------------
+Blockly.JavaScript['set'] = function(block){
+    let campo = block.getFieldValue("campoUpdate");
+    let valor = block.getFieldValue("valorUpdate");
+    let codigo = campo + " = " + valor;
+    let con = Blockly.JavaScript.valueToCode(block, 'UPDATE', Blockly.JavaScript.ORDER_ATOMIC);
+    if(con) codigo += ",\n" + con;
+    return [codigo,Blockly.JavaScript.ORDER_ATOMIC];
+}
 
 
 
@@ -184,6 +158,36 @@ function getTablas(hijo){
 function showCode(event){
     var code = Blockly.JavaScript.workspaceToCode(workspacePlayground);
     ed.getDoc().setValue(code);
+}
+
+Blockly.JavaScript['declaracion'] = function(block){
+  let tipo = block.getFieldValue("Tipo");
+  let nombre = block.getFieldValue("Nombre");
+  return  tipo + " @" + nombre + ";\n";  
+}
+
+Blockly.JavaScript['asignacion'] = function(block){
+    let nombre = block.getFieldValue("Nombre");
+
+    let valor = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
+    return nombre + " = " + valor +";\n";
+}
+
+Blockly.JavaScript['if'] = function(block){
+    let condicion = Blockly.JavaScript.valueToCode(block, 'condicion', Blockly.JavaScript.ORDER_ATOMIC);
+    var cuerpo = Blockly.JavaScript.statementToCode(block, 'cuerpo');
+    return "if (" + condicion + ") {\n " + cuerpo + "}\n";
+}
+
+Blockly.JavaScript['elseif'] = function(block){
+    let condicion = Blockly.JavaScript.valueToCode(block, 'condicion', Blockly.JavaScript.ORDER_ATOMIC);
+    var cuerpo = Blockly.JavaScript.statementToCode(block, 'cuerpo');
+    return "else if (" + condicion + ") {\n " + cuerpo + "}\n";
+}
+
+Blockly.JavaScript['else'] = function(block){
+    var cuerpo = Blockly.JavaScript.statementToCode(block, 'cuerpo');
+    return "else{\n " + cuerpo + "}\n";
 }
 
 
