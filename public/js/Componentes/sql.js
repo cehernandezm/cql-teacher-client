@@ -232,7 +232,7 @@ Blockly.Blocks['set'] = {
         .appendField("=")
         .appendField(new Blockly.FieldTextInput("valor"), "valorUpdate");
     this.setOutput(true, null);
-    this.setColour(230);
+    this.setColour(120);
  this.setTooltip("");
  this.setHelpUrl("");
   }

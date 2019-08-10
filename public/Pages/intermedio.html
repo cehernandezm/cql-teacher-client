@@ -28,15 +28,12 @@
     <script src="../js/CodeMirror/codemirror.js"></script>
     <link rel="stylesheet" href="../css/CodeMirror/codemirror.css">
     <script src="../mode/sql.js" ></script>
-    <link rel="stylesheet" href="../theme/dracula.css">
+    <link rel="stylesheet" href="../theme/paraiso-dark.css">
 
     <title>Intermedio</title>
 
-    <style>
-      body {
-        background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
-      }
-    </style>
+    <link rel="stylesheet" href="../css/title.css"> 
+
 
     <script>
       //---------------------------------------------- Verificar que si este logueado ----------------------------------------------------------
@@ -49,9 +46,8 @@
   <body onload="configurarBlockly()">
     <!--                             CABECERA                                    -->
     <div class="row" style="height: 10%;">
-      <div class="col-11">
-        <center><h1>Intermedio</h1></center>
-      </div>
+        <h1 class="special">Intermedio :]</h1>
+
       <div class="col-1 text-right">
         <button type="button" class="btn btn-danger" onclick="getOut()">
           Salir
@@ -61,7 +57,7 @@
 
     <div class="row" style="height: 88%;">
       <!--                   DIV IZQUIERDO                -->  
-      <div class="col-2" style="background-color: black;">
+      <div class="col-2">
         Aqui aparecera las bases de datos
         
       </div>
@@ -72,9 +68,8 @@
             <!--                  DRAG AND DROP                        -->
             <div class="col-8">
                 <div id="blocklyDiv" style="height: 100%;width: 100%;"></div>
-                <xml id="toolbox" style="display: none">
-                    
-                    <category name="Sentencias">
+                <xml id="toolbox" style="display: none">  
+                    <category name="Sentencias" colour="230">
                         <block type="select"></block>
                         <block type="where"></block>
                         <block type="insert1"></block>
@@ -83,20 +78,20 @@
                         <block type="delete"></block> 
                     </category>
                     
-                    <category name="Atributos">
+                    <category name="Atributos" colour="120">
                         <block type="Tablas"></block>
                         <block type="set"></block>
                     </category>
 
-                    <category name="Operadores">
-                    <block type="condicion"></block>
-                    <block type="operaciones"></block>
+                    <category name="Operadores" colour="200">
+                        <block type="condicion"></block>
+                        <block type="operaciones"></block>
                     
                     </category>
 
-                    <category name="Valores">
-                    <block type="campo"></block>
-                    <block type="valor"></block>
+                    <category name="Valores" colour="65">
+                        <block type="campo"></block>
+                        <block type="valor"></block>
                     </category>
 
                 </xml>
@@ -105,14 +100,17 @@
             <div class ="col-4">
                 <textarea name="editor" id="editor" cols="30" rows="10"></textarea>
                 <br>
-                <button type="button" onclick="generarCodigo()">Generar</button> 
+                <button type="button" class="btn  btn-success" onclick="generarCodigo()">   
+                <img src="../img/play.png" height="35">Play
+                </button> 
+                
             </div>
             
 
         </div>
         <BR>
         <!--             DIV DERECHO ABAJO                  -->
-        <div class="row" style="height: 17%;background-color: yellow;">
+        <div class="row" style="height: 17%;">
           Aqui ira la consola
         </div>
       </div>

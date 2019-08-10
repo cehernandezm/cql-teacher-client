@@ -3,7 +3,7 @@
 var prefEditor = {
     lineNumbres: true,
     mode: "text/x-sql",
-    theme: "dracula",
+    theme: "paraiso-dark",
     readOnly: true
 };
 

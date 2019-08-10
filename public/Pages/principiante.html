@@ -24,15 +24,12 @@
     <!--                     SQL BLOCKLY                     -->
     <script src="../js/Componentes/sql.js"></script>
     
+    <link rel="stylesheet" href="../css/title.css"> 
 
     <script src="../js/principiante.js"></script>
     <title>Principiante</title>
 
-    <style>
-      body {
-        background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
-      }
-    </style>
+  
 
     <script>
       //---------------------------------------------- Verificar que si este logueado ----------------------------------------------------------
@@ -46,7 +43,7 @@
     <!--                             CABECERA                                    -->
     <div class="row" style="height: 10%;">
       <div class="col-11">
-        <center><h1>Principiante</h1></center>
+          <h1 class="special">Principiante :]</h1>
       </div>
       <div class="col-1 text-right">
         <button type="button" class="btn btn-danger" onclick="getOut()">
@@ -68,7 +65,7 @@
             <div id="blocklyDiv" style="height: 100%;width: 100%;"></div>
             <xml id="toolbox" style="display: none">
                 
-                <category name="Sentencias">
+                <category name="Sentencias" colour="230">
                     <block type="select"></block>
                     <block type="where"></block>
                     <block type="insert1"></block>
@@ -77,18 +74,18 @@
                     <block type="delete"></block> 
                 </category>
                 
-                <category name="Atributos">
+                <category name="Atributos" colour="120">
                     <block type="Tablas"></block>
                     <block type="set"></block>
                 </category>
 
-                <category name="Operadores">
+                <category name="Operadores" colour="200">
                   <block type="condicion"></block>
                   <block type="operaciones"></block>
-                  
+                
                 </category>
 
-                <category name="Valores">
+                <category name="Valores" colour="65">
                   <block type="campo"></block>
                   <block type="valor"></block>
                 </category>

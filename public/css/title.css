@@ -1,0 +1,12 @@
+.special {
+  margin: auto;
+  text-align: center;
+  font-size: 40px;
+  color:#FFF;
+}
+
+body{
+    background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
+    font-family: 'Ubuntu', sans-serif;
+    
+}
