@@ -8,8 +8,6 @@ Blockly.Javascript['Tablas'] = function(block){
 
 function generarCodigo(){
     var code = Blockly.JavaScript.workspaceToCode(workspacePlayground);
-    
-    // now what do you do want to do with code...?
     console.log(code);
 }
 
@@ -38,11 +36,7 @@ Blockly.JavaScript['select'] = function(block) {
     code += ";";
     return code;
 };
-//---------------------------------------------------------------------- CAMPOS DE TEXTO---------------------------------------------------
-Blockly.JavaScript['campo'] = function(block) {
-    var text = block.getFieldValue('campo');
-    return [text];
-};
+
 
 //----------------------------------------------------------------------- WHERE ---------------------------------------------------------------
 Blockly.JavaScript['where'] = function(block){
@@ -88,10 +82,7 @@ function resolverOperacion(operacion){
     return "";
 }
 
-//-------------------------------------------------------------------- condiciones booleanas ---------------------------------------------------
-Blockly.JavaScript['condicion'] = function(block){
-    return "";
-}
+
 
 //------------------------------------------------------------- UPDATE ---------------------------------
 Blockly.JavaScript['update'] = function(block){
@@ -150,10 +141,30 @@ function getSet(nodo){
 }
 
 
-//--------------------------------------------------------- set-----------------------------------
+//--------------------------------------------------------- No tiene traduccion aparte solo en conjunto con otras -----------------------------------
 Blockly.JavaScript['set'] = function(block){
     return "";
 }
+
+Blockly.JavaScript['valor'] = function(block){
+    return "";
+}
+
+Blockly.JavaScript['Tablas'] = function(block){
+    return "";
+}
+
+Blockly.JavaScript['operaciones'] = function(block){
+    return "";
+}
+Blockly.JavaScript['condicion'] = function(block){
+    return "";
+}
+
+Blockly.JavaScript['campo'] = function(block) {
+    return "";
+};
+
 
 //------------------------------------------------ concatena las tablas de un select ------------------------------------------------------------
 function getTablas(hijo){
@@ -161,6 +172,7 @@ function getTablas(hijo){
     if(hijo.childBlocks_.length > 1) code += "," + getTablas(hijo.childBlocks_[1]);
     return code;
   }
+
 
 
 /*------------------------------------------------------------------------------------------------------------------------------------------------
@@ -171,7 +183,7 @@ function getTablas(hijo){
 
 function showCode(event){
     var code = Blockly.JavaScript.workspaceToCode(workspacePlayground);
-    console.log(code);
+    ed.getDoc().setValue(code);
 }
 
 

@@ -24,8 +24,12 @@
     <!--                     SQL BLOCKLY                     -->
     <script src="../js/Componentes/sql.js"></script>
     
+    <!--                     CODEMIRROR                   -->
+    <script src="../js/CodeMirror/codemirror.js"></script>
+    <link rel="stylesheet" href="../css/CodeMirror/codemirror.css">
+    <script src="../mode/sql.js" ></script>
+    <link rel="stylesheet" href="../theme/dracula.css">
 
-    <script src="../js/intermedio.js"></script>
     <title>Intermedio</title>
 
     <style>
@@ -59,12 +63,13 @@
       <!--                   DIV IZQUIERDO                -->  
       <div class="col-2" style="background-color: black;">
         Aqui aparecera las bases de datos
-        <button type="button" onclick="generarCodigo()">Generar</button> 
+        
       </div>
       <!--                   DIV DERECHO            -->
       <div class="col-9" style="margin-left:50px;">
         <!--                DIV DERECHO ARRIBA   -->  
         <div class="row" style="height:80%;">
+            <!--                  DRAG AND DROP                        -->
             <div class="col-8">
                 <div id="blocklyDiv" style="height: 100%;width: 100%;"></div>
                 <xml id="toolbox" style="display: none">
@@ -96,19 +101,25 @@
 
                 </xml>
             </div>
+            <!--                  EDITOR DE CODIGO                      -->
             <div class ="col-4">
-                Hola
+                <textarea name="editor" id="editor" cols="30" rows="10"></textarea>
+                <br>
+                <button type="button" onclick="generarCodigo()">Generar</button> 
             </div>
             
 
         </div>
-        
+        <BR>
         <!--             DIV DERECHO ABAJO                  -->
-        <div class="row" style="height: 20%;background-color: yellow;">
+        <div class="row" style="height: 17%;background-color: yellow;">
           Aqui ira la consola
         </div>
       </div>
     </div>
+    <script src="../js/intermedio.js"></script>
     <script src="../js/Componentes/generateCode.js"></script>
+    
+
   </body>
 </html>

@@ -1,3 +1,19 @@
+//---------------------------------------------- Configuracion codeMirror --------------------------------------------------------------------------
+
+var prefEditor = {
+    lineNumbres: true,
+    mode: "text/x-sql",
+    theme: "dracula",
+    readOnly: true
+};
+
+var editor = document.getElementById("editor");
+var ed;
+if(editor){
+    ed = CodeMirror.fromTextArea(editor,prefEditor);
+   ed.refresh();
+}
+
 //----------------------------------- configurar blockly-----------------------------
 var workspacePlayground;
 function configurarBlockly(){

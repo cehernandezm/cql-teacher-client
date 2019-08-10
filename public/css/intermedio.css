@@ -1,0 +1,19 @@
+.pesta{
+    opacity:0.9;
+    margin:0;
+    font-family:'PT Mono', monospace;
+    font-size:1rem;
+    background:transparent;
+    white-space:pre-wrap;
+    line-height:1.5em;
+  
+    border-top:1px solid #8c9394;
+    border-right:1px solid #8c9394;
+    border-bottom:1px solid #8c9394;
+    border-left:0px solid #8c9394;
+    word-wrap: break-word;
+    min-height: 200px;
+  }
+  .pesta:focus{
+    outline: none;
+  }
