@@ -95,7 +95,7 @@ Blockly.JavaScript['condicion'] = function(block){
 
 //------------------------------------------------------------- UPDATE ---------------------------------
 Blockly.JavaScript['update'] = function(block){
-    let code = "UPDATE " + block.getFieldValue("TABLA") + " SET ";
+    let code = "\nUPDATE " + block.getFieldValue("TABLA") + " SET ";
     if(block.childBlocks_[0]) code += getSet(block.childBlocks_[0]);
     //-------------------------------------------------- WHERE -----------------------------------------------------------------------------
     if(block.childBlocks_[1]){
@@ -106,6 +106,16 @@ Blockly.JavaScript['update'] = function(block){
     code += ";";
     return code;
 }
+
+
+//----------------------------------------------------- DELETE --------------------------------------------
+Blockly.JavaScript['delete'] = function(block){
+    let code = "\nDELETE FROM " + block.getFieldValue("TABLA");
+    if(block.childBlocks_[0].childBlocks_[0]) code += " " + resolverOperacion(block.childBlocks_[0].childBlocks_[0]);
+    code += ";";
+    return code;
+}
+
 
 //------------------------------------------------ concatena los campos de un select ------------------------------------------------------------
 function getCampos(hijo){
