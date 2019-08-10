@@ -238,6 +238,21 @@ Blockly.Blocks['set'] = {
   }
 };
 
+//----------------------------------------------------- DELETE -------------------------------------------------------------------
+
+Blockly.Blocks['delete'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("DELETE FROM")
+        .appendField(new Blockly.FieldTextInput("TABLA"), "TABLA");
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+
 function buscarListas(nombre) {
   for (let i = 0; i < tablas.length; i++) {
     if (tablas[i].nombre === nombre) return tablas[i].campos;
