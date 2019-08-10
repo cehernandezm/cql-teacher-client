@@ -148,7 +148,6 @@ Blockly.Blocks["where"] = {
       .setCheck(null)
       .appendField("WHERE");
     this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
     this.setColour(230);
     this.setTooltip("");
     this.setHelpUrl("");
@@ -166,6 +165,44 @@ Blockly.Blocks["valor"] = {
     this.setColour(65);
     this.setTooltip("");
     this.setHelpUrl("");
+  }
+};
+
+
+//------------------------------------------------- INSERT INTO TABLA VALUES() -----------------------------------------------------
+Blockly.Blocks['insert1'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("INSERT INTO")
+        .appendField(new Blockly.FieldTextInput("TABLA"), "TABLA");
+    this.appendValueInput("WHERE")
+        .setCheck(null)
+        .appendField("VALUES (");
+    this.appendDummyInput()
+        .appendField(")");
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+//------------------------------------------------ INSERT INTO TABLA() VALUES()------------------------------------------------
+Blockly.Blocks['insert2'] = {
+  init: function() {
+    this.appendValueInput("INSERT")
+        .setCheck(null)
+        .appendField("INSERT INTO")
+        .appendField(new Blockly.FieldTextInput("TABLA"), "TABLA")
+        .appendField("(");
+    this.appendDummyInput();
+    this.appendValueInput("VALUES")
+        .setCheck(null)
+        .appendField(") VALUES(");
+    this.appendDummyInput()
+        .appendField(")");
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
   }
 };
 

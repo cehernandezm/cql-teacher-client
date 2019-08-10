@@ -15,29 +15,27 @@ function generarCodigo(){
 
 //--------------------------------------------------------------------- SELECT----------------------------------------------------------
 Blockly.JavaScript['select'] = function(block) {
-    //console.log(block);
-    var code = "SELECT ";
+    var code = "\nSELECT ";
 
     //------------------------------------------------- CAMPOS EN SELECT --------------------------------------------------------------
-    if(block.childBlocks_[0].getFieldValue('campo')) code += getCampos(block.childBlocks_[0]);
-    else if(block.childBlocks_[0].getFieldValue('Tabla')){
-        let tabla = block.childBlocks_[0].getFieldValue('Tabla');
-        let campo = block.childBlocks_[0].getFieldValue('Campos');
-        code+= tabla + "." + campo;
-    }else if(block.childBlocks_[0].getFieldValue('valor')) code +=  block.childBlocks_[0].getFieldValue('valor');
-
+    if(block.childBlocks_[0])
+        code += getCampos(block.childBlocks_[0]);
     code += "\n";
     //-------------------------------------------------- CAMPOS DE FROM--------------------------------------------------------------------
 
     code+= "FROM ";
-    if(block.childBlocks_[1].getFieldValue('campo')) code += getCampos(block.childBlocks_[1]) + "\n";
-    else if(block.childBlocks_[1].getFieldValue('valor')) code +=  block.childBlocks_[1].getFieldValue('valor');
-
-    code += "\n";
-
+    if(block.childBlocks_[1]){
+        if(block.childBlocks_[1].getFieldValue('campo')) code += getCampos(block.childBlocks_[1]) + "\n";
+        else if(block.childBlocks_[1].getFieldValue('valor')) code +=  block.childBlocks_[1].getFieldValue('valor');
+    }
+    
     //-------------------------------------------------- WHERE -----------------------------------------------------------------------------
-    if(block.childBlocks_.length[2]) if(block.childBlocks_.length[2].getFieldValue('WHERE')) code += block.childBlocks_.length[2].getFieldValue('WHERE');
-
+    if(block.childBlocks_[2]){
+        code += "\nWHERE "; 
+        if(block.childBlocks_[2].childBlocks_[0]) code += resolverOperacion(block.childBlocks_[2].childBlocks_[0]);
+        
+    }   
+    code += ";";
     return code;
 };
 //---------------------------------------------------------------------- CAMPOS DE TEXTO---------------------------------------------------
@@ -48,9 +46,24 @@ Blockly.JavaScript['campo'] = function(block) {
 
 //----------------------------------------------------------------------- WHERE ---------------------------------------------------------------
 Blockly.JavaScript['where'] = function(block){
-    let code = "WHERE ";
-    if(block.childBlocks_[0]) code += resolverOperacion(block.childBlocks_[0])
-    code += "\n";
+    return "";
+}
+
+//----------------------------------------------------------------------- INSERT1 -----------------------------------------------
+Blockly.JavaScript['insert1'] = function(block){
+    let code = "\nINSERT INTO " + block.getFieldValue("TABLA") + " VALUES(";
+    if(block.childBlocks_[0]) code += " " + getCampos(block.childBlocks_[0]);
+    code += " );\n";
+    return code;
+}
+
+//----------------------------------------------------------------------- INSERT2-------------------------------------------------
+Blockly.JavaScript['insert2'] = function(block){
+    let code = "\nINSERT INTO " + block.getFieldValue("TABLA") + " ( ";
+    if(block.childBlocks_[0]) code += getCampos(block.childBlocks_[0]);
+    code += " ) VALUES( ";
+    if(block.childBlocks_[1]) code += getCampos(block.childBlocks_[1]);
+    code += ");\n";
     return code;
 }
 
@@ -83,8 +96,19 @@ Blockly.JavaScript['condicion'] = function(block){
 
 //------------------------------------------------ concatena los campos de un select ------------------------------------------------------------
 function getCampos(hijo){
-  let code = hijo.getFieldValue("campo");
-  if(hijo.childBlocks_.length > 0) code += "," + getCampos(hijo.childBlocks_[0]);
+  let code = "";
+  if( hijo.getFieldValue("campo") ) code = hijo.getFieldValue("campo");
+  else if( hijo.getFieldValue("valor") ) code = hijo.getFieldValue("valor");
+  else if( hijo.getFieldValue("Tabla")){
+    let tabla = hijo.getFieldValue('Tabla');
+    let campo = hijo.getFieldValue('Campos');
+    code = tabla + "." + campo;
+  }
+  if(hijo.childBlocks_[0])
+    if(hijo.childBlocks_[0].getFieldValue("campo") || hijo.childBlocks_[0].getFieldValue("valor") || hijo.childBlocks_[0].getFieldValue('Tabla') ) code += "," + getCampos(hijo.childBlocks_[0]);
+  
+    
+
   return code;
 }
 
