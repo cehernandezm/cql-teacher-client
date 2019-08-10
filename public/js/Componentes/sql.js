@@ -206,6 +206,38 @@ Blockly.Blocks['insert2'] = {
   }
 };
 
+//--------------------------------------------------- UPDATE --------------------------------------------------------------------
+Blockly.Blocks['update'] = {
+  init: function() {
+    this.appendValueInput("UPDATE")
+        .setCheck(null)
+        .appendField("UPDATE")
+        .appendField(new Blockly.FieldTextInput("TABLA"), "TABLA")
+        .appendField("SET");
+    this.appendDummyInput();
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+
+//----------------------------------------------------- SET ----------------------------------
+Blockly.Blocks['set'] = {
+  init: function() {
+    this.appendValueInput("UPDATE")
+        .setCheck(null)
+        .appendField(new Blockly.FieldTextInput("campo"), "campoUpdate")
+        .appendField("=")
+        .appendField(new Blockly.FieldTextInput("valor"), "valorUpdate");
+    this.setOutput(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
 function buscarListas(nombre) {
   for (let i = 0; i < tablas.length; i++) {
     if (tablas[i].nombre === nombre) return tablas[i].campos;

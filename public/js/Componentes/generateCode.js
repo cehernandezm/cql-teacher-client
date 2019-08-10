@@ -90,8 +90,21 @@ function resolverOperacion(operacion){
 
 //-------------------------------------------------------------------- condiciones booleanas ---------------------------------------------------
 Blockly.JavaScript['condicion'] = function(block){
-    console.log(block);
-    return "condicion";
+    return "";
+}
+
+//------------------------------------------------------------- UPDATE ---------------------------------
+Blockly.JavaScript['update'] = function(block){
+    let code = "UPDATE " + block.getFieldValue("TABLA") + " SET ";
+    if(block.childBlocks_[0]) code += getSet(block.childBlocks_[0]);
+    //-------------------------------------------------- WHERE -----------------------------------------------------------------------------
+    if(block.childBlocks_[1]){
+        code += "\nWHERE "; 
+        if(block.childBlocks_[1].childBlocks_[0]) code += resolverOperacion(block.childBlocks_[1].childBlocks_[0]);
+        
+    }   
+    code += ";";
+    return code;
 }
 
 //------------------------------------------------ concatena los campos de un select ------------------------------------------------------------
@@ -110,6 +123,26 @@ function getCampos(hijo){
     
 
   return code;
+}
+
+//------------------------------------------------- regresar un set a un update -----------------------------------------------
+function getSet(nodo){
+    let code = "";
+    if(nodo.getFieldValue("campoUpdate")){
+        let campo = nodo.getFieldValue("campoUpdate");
+        let valor = nodo.getFieldValue("valorUpdate");
+
+        code += campo + " = " + valor;
+
+        if(nodo.childBlocks_[0]) code += ",\n" + getSet(nodo.childBlocks_[0]);
+    }
+    return code;
+}
+
+
+//--------------------------------------------------------- set-----------------------------------
+Blockly.JavaScript['set'] = function(block){
+    return "";
 }
 
 //------------------------------------------------ concatena las tablas de un select ------------------------------------------------------------
