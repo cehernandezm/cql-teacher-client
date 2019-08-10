@@ -32,6 +32,11 @@ app.get("/principiante", function(req, res){
     res.sendFile(path.join(__dirname + '/public/Pages/principiante.html'));
 });
 
+//----------------------------------------------- Pagina para intermedio ---------------------------------------------
+app.get("/intermedio",function(req,res){
+    res.sendFile(path.join(__dirname + '/public/Pages/intermedio.html'));
+});
+
 //--------------------------------------- Pagina de error-------------------------------------------
 app.get('*',function(solictud,respuesta){
     respuesta.send("Error 404");
