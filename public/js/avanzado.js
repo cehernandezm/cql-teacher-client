@@ -86,7 +86,10 @@ $('#ejecutarCode').click(function(){
     if(index != null){
         let pestaña = codeEditor[index];
         let editor = pestaña.editor;
-        console.log(editor.getValue());
+
+        let seleccion = editor.getSelection();
+        if(!seleccion) seleccion = editor.getValue();
+        console.log(seleccion);
     }else alert("Seleccione una pestaña");
 });
 
