@@ -401,3 +401,116 @@ Blockly.Blocks['else'] = {
  this.setHelpUrl("");
   }
 };
+
+Blockly.Blocks['switch'] = {
+  init: function() {
+    this.appendValueInput("condicion")
+        .setCheck(null)
+        .appendField("switch");
+    this.appendStatementInput("cuerpo")
+        .setCheck(null);
+    this.appendStatementInput("default")
+        .setCheck(null)
+        .appendField("default");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(189);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['case'] = {
+  init: function() {
+    this.appendValueInput("condicion")
+        .setCheck(null)
+        .appendField("case");
+    this.appendStatementInput("cuerpo")
+        .setCheck(null);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(189);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['while'] = {
+  init: function() {
+    this.appendValueInput("condicion")
+        .setCheck(null)
+        .appendField("while");
+    this.appendStatementInput("cuerpo")
+        .setCheck(null);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(189);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['dowhile'] = {
+  init: function() {
+    this.appendStatementInput("cuerpo")
+        .setCheck(null)
+        .appendField("do");
+    this.appendValueInput("condicion")
+        .setCheck(null)
+        .appendField("while");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(189);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['for'] = {
+  init: function() {
+    this.appendValueInput("condicion")
+        .setCheck(null)
+        .appendField("for ")
+        .appendField(new Blockly.FieldTextInput("inicializacion"), "inicializacion")
+        .appendField("condicion:");
+    this.appendStatementInput("NAME")
+        .setCheck(null)
+        .appendField(new Blockly.FieldTextInput("actualizacion"), "actualizacion");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(189);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['metodo'] = {
+  init: function() {
+    this.appendValueInput("condicion")
+        .setCheck(null)
+        .appendField(new Blockly.FieldTextInput("nombre"), "nombre")
+        .appendField(" ( parametros");
+    this.appendDummyInput()
+        .appendField(")");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(90);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['funcion'] = {
+  init: function() {
+    this.appendValueInput("condicion")
+        .setCheck(null)
+        .appendField(new Blockly.FieldTextInput("nombre"), "nombre")
+        .appendField(" ( parametros");
+    this.appendDummyInput()
+        .appendField(")");
+    this.setOutput(true, null);
+    this.setColour(90);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};

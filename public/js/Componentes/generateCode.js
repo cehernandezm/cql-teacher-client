@@ -190,4 +190,49 @@ Blockly.JavaScript['else'] = function(block){
     return "else{\n " + cuerpo + "}\n";
 }
 
+Blockly.JavaScript['switch'] = function(block){
+    let condicion = Blockly.JavaScript.valueToCode(block, 'condicion', Blockly.JavaScript.ORDER_ATOMIC);
+    let cuerpo = Blockly.JavaScript.statementToCode(block, 'cuerpo');
+    let cuerpod = Blockly.JavaScript.statementToCode(block, 'default');
+    return "switch (" + condicion + ") {\n " + cuerpo +"\ndefault:\n" + cuerpod + "}\n";
+}
+
+Blockly.JavaScript['case'] = function(block){
+    let condicion = Blockly.JavaScript.valueToCode(block, 'condicion', Blockly.JavaScript.ORDER_ATOMIC);
+    let cuerpo = Blockly.JavaScript.statementToCode(block, 'cuerpo');
+    return "case " + condicion + ":\n " + cuerpo +"detener;\n";
+}
+
+Blockly.JavaScript['while'] = function(block){
+    let condicion = Blockly.JavaScript.valueToCode(block, 'condicion', Blockly.JavaScript.ORDER_ATOMIC);
+    let cuerpo = Blockly.JavaScript.statementToCode(block, 'cuerpo');
+    return "while (" + condicion + "){\n " + cuerpo +"}\n";
+}
+
+Blockly.JavaScript['dowhile'] = function(block){
+    let condicion = Blockly.JavaScript.valueToCode(block, 'condicion', Blockly.JavaScript.ORDER_ATOMIC);
+    let cuerpo = Blockly.JavaScript.statementToCode(block, 'cuerpo');
+    return "do {\n" + cuerpo + "while(" + condicion + " );\n";
+}
+
+Blockly.JavaScript['for'] = function(block){
+    let inicializacion = block.getFieldValue("inicializacion");
+    let actualizacion = block.getFieldValue("actualizacion");
+    let condicion = Blockly.JavaScript.valueToCode(block, 'condicion', Blockly.JavaScript.ORDER_ATOMIC);
+    let cuerpo = Blockly.JavaScript.statementToCode(block, 'NAME');
+    return "for(" +inicializacion + "; " + condicion + "; " + actualizacion + "){\n" + cuerpo +"}\n";
+}
+
+Blockly.JavaScript['metodo'] = function(block){
+    let nombre = block.getFieldValue("nombre");
+    let condicion = Blockly.JavaScript.valueToCode(block, 'condicion', Blockly.JavaScript.ORDER_ATOMIC);
+    return nombre + "(" + condicion + ");\n";
+}
+
+Blockly.JavaScript['funcion'] = function(block){
+    let nombre = block.getFieldValue("nombre");
+    let condicion = Blockly.JavaScript.valueToCode(block, 'condicion', Blockly.JavaScript.ORDER_ATOMIC);
+    return [nombre + "(" + condicion + ")",Blockly.JavaScript.ORDER_ATOMIC];
+}
+
 
