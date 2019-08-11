@@ -1,0 +1,114 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script src="../js/jquery.min.js" type="text/javascript"></script>
+
+    <!--              Bootstrap CSS                                   -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+
+    <!--                        Bootstrap  JS    -->
+    <script
+      src="../js/jquery-3.3.1.slim.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../js/popper.min.js" crossorigin="anonymous"></script>
+    <script src="../js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+    
+
+    <!--------                BLOCKLY               ------>
+    <script src="../js/Blockly/blockly_compressed.js"></script>
+    <script src="../js/Blockly/blocks_compressed.js"></script>
+    <script src="../js/Blockly/es.js"></script>
+    <script src="../js/Blockly/javascript_compressed.js"></script>
+    <!--                     SQL BLOCKLY                     -->
+    <script src="../js/Componentes/sql.js"></script>
+    
+    <!--                     CODEMIRROR                   -->
+    <script src="../js/CodeMirror/codemirror.js"></script>
+    <link rel="stylesheet" href="../css/CodeMirror/codemirror.css">
+    <script src="../mode/sql.js" ></script>
+    <link rel="stylesheet" href="../theme/paraiso-dark.css">
+
+    <!--                   SORTABLE                         -->
+    <script src="../js/Sortable/Sortable.min.js"></script>
+
+    
+    <link rel="stylesheet" href="../css/avanzado.css">
+
+    <title>Avanzado</title>
+
+    <link rel="stylesheet" href="../css/title.css"> 
+
+
+    <script>
+      //---------------------------------------------- Verificar que si este logueado ----------------------------------------------------------
+      var cookie = document.cookie;
+      var username = cookie.split("=")[1];
+
+      if (!username) window.location.href = "/";
+    </script>
+  </head>
+  <body>
+    <!--                             CABECERA                                    -->
+    <div class="row" style="height: 10%;">
+        <h1 class="special">Avanzado :]</h1>
+
+      <div class="col-1 text-right">
+        <button type="button" class="btn btn-danger" onclick="getOut()">
+          Salir
+        </button>
+      </div>
+    </div>
+
+    <div class="row" style="height: 88%;">
+      <!--                   DIV IZQUIERDO                -->  
+      <div class="col-2">
+        Aqui aparecera las bases de datos
+        
+      </div>
+      <!--                   DIV DERECHO            -->
+      <div class="col-8" style="margin-left:50px;">
+        <!--                DIV DERECHO ARRIBA   -->  
+        <div class="row" style="height:80%;">
+            <div class="container">
+                <!--                   MENU                       -->
+                <div class="row" style="height: 10%;">
+                   
+                    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-0 container">
+                        
+                        <div class="mx-auto order-0">
+                            <a class="navbar-brand mx-auto" id="newTab" href="#">Nuevo</a>
+                            <a class="navbar-brand mx-auto" href="#">Abrir</a>
+                            <a class="navbar-brand mx-auto" href="#">Guardar</a>
+                            <a class="navbar-brand mx-auto" id="ejecutarCode" href="#">Ejecutar</a>
+                            
+                        </div>
+                      </nav>
+
+
+                </div>
+                <!--                  EDITOR DE TEXTO                  -->
+                <div class="row" style="height: 90%;">
+                    <div class="col-12">
+                       <!--                                PESTAÑAS                                         -->
+                        <ul id="tab-list" class="nav nav-tabs" role="tablist">                           
+                        </ul>
+                        <div id="tab-content" class="tab-content pestaña"></div>
+                        
+                    </div>
+                </div>    
+            </div>
+            <!--                  MENU                     -->
+        </div>
+        <BR>
+        <!--             DIV DERECHO ABAJO                  -->
+        <div class="row" style="height: 17%;">
+          Aqui ira la consola
+        </div>
+      </div>
+    </div>
+    
+    <script src="../js/avanzado.js"></script>
+  </body>
+</html>

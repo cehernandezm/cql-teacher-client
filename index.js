@@ -37,6 +37,10 @@ app.get("/intermedio",function(req,res){
     res.sendFile(path.join(__dirname + '/public/Pages/intermedio.html'));
 });
 
+app.get("/avanzado",function(req,res){
+    res.sendFile(path.join(__dirname + '/public/Pages/avanzado.html'));
+});
+
 //--------------------------------------- Pagina de error-------------------------------------------
 app.get('*',function(solictud,respuesta){
     respuesta.send("Error 404");
