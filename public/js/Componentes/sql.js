@@ -29,6 +29,8 @@ Blockly.Blocks["select"] = {
       .appendField("FROM");
     this.setNextStatement(true, null);
     this.setPreviousStatement(true, null);
+    this.appendStatementInput("cuerpo")
+        .setCheck(null);
     this.setColour(230);
     this.setOutput(false, null);
     this.setTooltip("");
@@ -48,6 +50,8 @@ Blockly.Blocks["select2"] = {
     this.appendValueInput("WHERE")
       .setCheck(null)
       .appendField("WHERE");
+    this.appendStatementInput("cuerpo")
+      .setCheck(null);
     this.setNextStatement(true, null);
     this.setPreviousStatement(true, null);
     this.setColour(230);
@@ -307,6 +311,53 @@ Blockly.Blocks['delete2'] = {
  this.setTooltip("");
  this.setPreviousStatement(true, null);
  this.setNextStatement(true, null);
+ this.setHelpUrl("");
+  }
+};
+
+
+//--------------------------------------- ORDER BY  ----------------------------------------------------------------
+Blockly.Blocks['orderby'] = {
+  init: function() {
+    this.appendValueInput("ID")
+        .setCheck(null)
+        .appendField("ORDER BY");
+    this.appendDummyInput();
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+//--------------------------------------- LIMIT  ----------------------------------------------------------------
+Blockly.Blocks['limit'] = {
+  init: function() {
+    this.appendValueInput("ID")
+        .setCheck(null)
+        .appendField("LIMIT ");
+    this.appendDummyInput();
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+
+//--------------------------------------- USE  ----------------------------------------------------------------
+Blockly.Blocks['use'] = {
+  init: function() {
+    this.appendValueInput("ID")
+        .setCheck(null)
+        .appendField("USE");
+    this.appendDummyInput();
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
  this.setHelpUrl("");
   }
 };

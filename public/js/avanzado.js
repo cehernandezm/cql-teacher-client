@@ -101,3 +101,9 @@ function obtenerIndex(nombre){
     }
     return null;
 }
+
+//---------------------------------Funcion para cerrar sesion---------------------------------------------------
+function getOut(){
+    document.cookie = "username=;";
+    window.location.href = '/';
+}

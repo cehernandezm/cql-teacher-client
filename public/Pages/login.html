@@ -1,33 +1,29 @@
 <html>
     <head>
-        
+            
         <script src="../js/jquery.min.js" type="text/javascript"></script>
+        
 
         <!--              Bootstrap CSS                                   -->
         <link rel="stylesheet" href="../css/bootstrap.min.css" >
         
         <!--                        Bootstrap  JS    -->
-        <script src="../js/jquery-3.3.1.slim.min.js"  crossorigin="anonymous"></script>
         <script src="../js/popper.min.js"  crossorigin="anonymous"></script>
         <script src="../js/bootstrap.min.js" crossorigin="anonymous" ></script>
         
-    
+        
         <meta charset="UTF-8">
         
-        <script src="../js/Login.js" type="text/javascript"></script>
+        
+        <link rel="stylesheet" href="../css/Login.css">
     
-        <style>
-            body{
-                background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
-            }
-        </style> 
+        
 
         <!-- --------------------------------------------- Verificar si existe cookie -------------------------------------------- -->
         <script>
             var cookie = document.cookie;
             var dataU = cookie.split(";");
             var username = ((dataU[0]).split('='))[1];
-            
             if(username) window.location.href = '/dificultad';
             
         </script>
@@ -46,11 +42,34 @@
                         <div class="form-group">
                             <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                         </div>
-                        <input type="button" id="sendlogin" class="btn btn-primary btn-lg btn-block" onclick="checkLogin()" value="Login">
+                        <input type="button" id="sendlogin" class="btn btn-primary btn-lg btn-block" data-toggle = "modal" data-target = "#modalLogin" value="Login">
                     </form>
                 </div>
             </div>
             </div>
         </div>
+    
+        <!--                                              MODAL DE MENSAJE LUP                    -->
+        <div class = "modal fade" id = "modalLogin">
+            <div class = "modal-dialog">
+                <div class = "modal-content">
+                    <div class = "modal-header">
+                        <h5 class = "modal-title"> LUP GENERADO </h5>
+                    </div>
+                    <div class = "modal-body">
+                        <div class = "console">
+                            <p class = "console-body" id = "console-body">
+                                PRUEBA
+                            </p>
+                        </div>   
+                    </div>
+                    <div class = "modal-footer">
+                        <button type = "button" class = "btn btn-primary" id = "enviarLupLogin"> ENVIAR </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
     </body>
+    <script src="../js/Login.js" type="text/javascript"></script>
 </html>

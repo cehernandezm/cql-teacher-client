@@ -19,7 +19,10 @@ Blockly.JavaScript['select'] = function(block) {
     //-------------------------------------------------- CAMPOS DE FROM--------------------------------------------------------------------
 
     let tabla = Blockly.JavaScript.valueToCode(block, 'FROM', Blockly.JavaScript.ORDER_ATOMIC);
-    code+= "FROM " + tabla +";\n";
+    code+= "FROM " + tabla;
+
+    let cuerpo  = Blockly.JavaScript.statementToCode(block, 'cuerpo');
+    code += "\n" + cuerpo + ";\n";
     return code;
 };
 
@@ -34,7 +37,10 @@ Blockly.JavaScript['select2'] = function(block) {
     code += "FROM " + tabla +"\n";
 
     let condicion2  = Blockly.JavaScript.valueToCode(block, 'WHERE', Blockly.JavaScript.ORDER_ATOMIC);
-    code += "WHERE " + condicion2 + ";\n";
+    code += "WHERE " + condicion2 ;
+
+    let cuerpo  = Blockly.JavaScript.statementToCode(block, 'cuerpo');
+    code += "\n" + cuerpo + ";\n";
     return code;
 };
 
@@ -200,7 +206,7 @@ Blockly.JavaScript['switch'] = function(block){
 Blockly.JavaScript['case'] = function(block){
     let condicion = Blockly.JavaScript.valueToCode(block, 'condicion', Blockly.JavaScript.ORDER_ATOMIC);
     let cuerpo = Blockly.JavaScript.statementToCode(block, 'cuerpo');
-    return "case " + condicion + ":\n " + cuerpo +"detener;\n";
+    return "case " + condicion + ":{\n " + cuerpo +"\nbreak;\n}\n";
 }
 
 Blockly.JavaScript['while'] = function(block){
@@ -236,3 +242,17 @@ Blockly.JavaScript['funcion'] = function(block){
 }
 
 
+Blockly.JavaScript['orderby'] = function(block){
+    let nombres = Blockly.JavaScript.valueToCode(block, 'ID', Blockly.JavaScript.ORDER_ATOMIC);
+    return "ORDER BY " + nombres ;
+}
+
+Blockly.JavaScript['limit'] = function(block){
+    let nombres = Blockly.JavaScript.valueToCode(block, 'ID', Blockly.JavaScript.ORDER_ATOMIC);
+    return "LIMIT " + nombres ;
+}
+
+Blockly.JavaScript['use'] = function(block){
+    let nombres = Blockly.JavaScript.valueToCode(block, 'ID', Blockly.JavaScript.ORDER_ATOMIC);
+    return "USE " + nombres + ";" ;
+}
