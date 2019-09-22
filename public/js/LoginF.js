@@ -38,7 +38,15 @@ $('#enviarLupLogin').on('click',function(e){
         url : hostname + ":" + port + '/sendLup',
         data : {cuerpo : lupGenerado},
         success : function(data,textStatus,xhr){
-            console.log("INFO" + data["cuerpo"]);   
+            let codigo = data["cuerpo"][0];
+            GramaticaLup.parse(codigo);
+            
+            let instrucciones = GramaticaLup.arbol.raiz;
+            instrucciones.forEach(function(ins,index,array){
+                console.log("Valor: " + ins.ejecutar());
+            });
+            
+            
         },
         error : function(XMLHttpRequest,textStatus,errorThrown){
             console.log("ERROR: " + textStatus );
