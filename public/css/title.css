@@ -22,3 +22,9 @@ body{
 .console-body {
     font-family: "Lucida Sans Typewriter", "Lucida Console", Monaco, "Bitstream Vera Sans Mono", monospace;
 }
+
+.consultas{
+  height: 90%;
+  overflow-y: scroll;
+  background: #FFF;
+}

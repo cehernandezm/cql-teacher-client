@@ -5,3 +5,7 @@ function codigoLogout(user){
 function codigoConsulta(codigo,user){
     return "[+QUERY]\n[+USER]\n\t" + user + "\n[-USER]\n[+DATA]\n\t" + codigo + "\n[-DATA]\n[-QUERY]"
 }
+
+function codigoStruct(user){
+    return "[+STRUCT]\n[+USER]\n\t" + user + "\n[-USER]\n[-STRUCT]";
+}

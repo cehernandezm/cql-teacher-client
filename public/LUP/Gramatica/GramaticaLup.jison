@@ -18,6 +18,8 @@
 "COLUMN"                                    return 'COLUMN'
 "TYPE"                                      return 'TYPE'
 "DESC"                                      return 'DESC'
+"MESSAGE"                                   return 'MESSAGE'
+"DATA"                                      return 'DATA'
 ((?!(\[(\+|\-))).+)                         return 'CUERPO'
 <<EOF>>                                     {}
 .					                        { console.error('Este es un error léxico: ' + yytext + ', en la linea: ' + yylloc.first_line + ', en la columna: ' + yylloc.first_column); }
@@ -50,13 +52,23 @@ datas : datas data              {$$ = $1; $$.push($2)}
       ;
 
 data : mensajeError             {$$ = $1}
-       ;
+     | mensaje                  {$$ = $1}
+     | consulta                 {$$ = $1}  
+     ;
 
 mensajeError : CORIZQ MAS ERROR CORDER CORIZQ MAS LINE CORDER ENTERO CORIZQ MENOS LINE CORDER
                CORIZQ MAS COLUMN CORDER ENTERO CORIZQ MENOS COLUMN CORDER CORIZQ MAS TYPE
                CORDER CUERPO CORIZQ MENOS TYPE CORDER CORIZQ MAS DESC CORDER cuerpo
                CORIZQ MENOS DESC CORDER CORIZQ MENOS ERROR CORDER                                   {$$ = new MensajesError($36,$27,$9,$18);}
-               ;   
+             ;   
+
+mensaje : CORIZQ MAS MESSAGE CORDER cuerpo CORIZQ MENOS MESSAGE CORDER                              {$$ = new Mensaje($5);}
+        ;
+
+
+consulta : CORIZQ MAS DATA CORDER cuerpo CORIZQ MENOS DATA CORDER                                   {$$ = new Consulta($5);}
+         ;
+
 
 cuerpo : cuerpo CUERPO                              {$$ = $1 + "\n" + $2}
        | CUERPO                                     {$$ = $1}

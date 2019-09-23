@@ -56,7 +56,7 @@ $('#enviarLupData').on('click',function(e){
     $('#modalData').modal('hide');
     var username = cookie.split("=")[1];
     let code = generarCodigo();
-    let paquete = codigoConsulta(code,username);
+    let paquete = codigoStruct(username);
 
     $.ajax({
         type : "POST",
@@ -71,7 +71,7 @@ $('#enviarLupData').on('click',function(e){
 
                 //---------------------------------------- ANALIS CON JISON ----------------------------------------------------
                 GramaticaLup.parse(codigo);
-
+                
                 let instrucciones = GramaticaLup.arbol.raiz;
                 instrucciones.forEach(function(ins,index,array){
                     console.log("Valor: " + ins.ejecutar());
@@ -89,3 +89,42 @@ $('#enviarLupData').on('click',function(e){
 
 
 });
+
+
+
+//---------------------------------------------- CREAR NUEVAS CONSULTAS ----------------------------------------
+var tabID = 0;
+function nuevaConsulta(tabla){
+    $('#tab-list').append(
+        $('<li class="nav-item">'+
+        '<a class="nav-link" role="tab"  data-toggle="tab" href="#Cuerpo' + tabID + '" id="Tab' + tabID + '">Consulta ' + tabID + 
+        '<button class="close" type="button" title="cerrar">'+
+        '<span aria-hidden="true">&times;</span></button></a></li>')
+    );
+
+    let tab = document.createElement('div');
+    tab.setAttribute('id','Cuerpo'+tabID);
+    tab.className = 'tab-pane fade';
+
+    let container = document.createElement('div');
+    container.className ='table-responsive consultas';
+
+    container.innerHTML = tabla;
+    tab.appendChild(container);
+    let tot = document.getElementById('tab-content');
+    tot.appendChild(tab);
+    tabID++;
+    console.log(tabla);
+}
+
+//---------------------------------------------------------- CERRAR PESTAÑAS DE CONSULTAS -------------------------------------------
+$('#tab-list').on('click','.close',function(){
+    let id = $(this).parents('a').attr('id');
+    $(this).parents('li').remove();
+    $(id).remove();
+    
+    let numero = id.replace("Tab","");
+    $('#Cuerpo'+numero).remove();
+    let firsr = $('#tab-list a:first');
+    firsr.tab('show');
+ });
