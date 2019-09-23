@@ -52,7 +52,7 @@ app.get("/avanzado",function(req,res){
 app.post("/sendLup", function(req,res){
     let lup = req.body.cuerpo;
     var retorno = {
-        "cuerpo" : "[+LOGIN]\n\t[FAIL]\n[-LOGIN]"
+        "cuerpo" : "error"
     };
 
     let cuerpo = {};

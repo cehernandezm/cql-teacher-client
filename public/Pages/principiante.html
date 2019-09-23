@@ -7,14 +7,8 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
 
     <!--                        Bootstrap  JS    -->
-    <script
-      src="../js/jquery-3.3.1.slim.min.js"
-      crossorigin="anonymous"
-    ></script>
     <script src="../js/popper.min.js" crossorigin="anonymous"></script>
     <script src="../js/bootstrap.min.js" crossorigin="anonymous"></script>
-
-    
 
     <!--------                BLOCKLY               ------>
     <script src="../js/Blockly/blockly_compressed.js"></script>
@@ -23,13 +17,11 @@
     <script src="../js/Blockly/javascript_compressed.js"></script>
     <!--                     SQL BLOCKLY                     -->
     <script src="../js/Componentes/sql.js"></script>
-    
-    <link rel="stylesheet" href="../css/title.css"> 
 
-    <script src="../js/principiante.js"></script>
+    <link rel="stylesheet" href="../css/title.css" />
+
+    <script src="../js/Componentes/GenerateLup.js"></script>
     <title>Principiante</title>
-
-  
 
     <script>
       //---------------------------------------------- Verificar que si este logueado ----------------------------------------------------------
@@ -41,70 +33,146 @@
   </head>
   <body onload="configurarBlockly()">
     <!--                             CABECERA                                    -->
-    <div class="row" style="height: 10%;">
+    <div class="row" >
       <div class="col-11">
-          <h1 class="special">Principiante :]</h1>
+        <h1 class="special">Principiante :]</h1>
       </div>
       <div class="col-1 text-right">
-        <button type="button" class="btn btn-danger" onclick="getOut()">
+        <button type="button" class="btn btn-danger" id="LogOut">
           Salir
         </button>
       </div>
     </div>
-
-    <div class="row" style="height: 88%;">
-      <!--                   DIV IZQUIERDO                -->  
+    <br>
+    <div class="row h-100">
+      <!--                   DIV IZQUIERDO                -->
       <div class="col-2" style="background-color: black;">
         Aqui aparecera las bases de datos
-        <button type="button" onclick="generarCodigo()">Generar</button> 
+        <button type="button" data-toggle="modal" data-target="#modalData">
+          Generar
+        </button>
       </div>
       <!--                   DIV DERECHO            -->
       <div class="col-9" style="margin-left:50px;">
-        <!--                DIV DERECHO ARRIBA   -->  
-        <div class="row" style="height:80%;">
-            <div id="blocklyDiv" style="height: 100%;width: 100%;"></div>
-            <xml id="toolbox" style="display: none">
-                
-                <category name="Sentencias" colour="230">
-                    <block type="select"></block>
-                        <block type = "select2"></block>
-                        <block type = "insert1"></block>
-                        <block type = "insert2"></block> 
-                        <block type = "update"></block>
-                        <block type = "update2"></block>
-                        <block type = "delete"></block>
-                        <block type = "delete2"></block> 
-                        <block type = "orderby"></block>
-                        <block type = "limit"></block> 
-                        <block type = "use"></block> 
-                </category>
-                
-                <category name="Atributos" colour="120">
-                    <block type="Tablas"></block>
-                    <block type="set"></block>
-                </category>
+        <!--                DIV DERECHO ARRIBA   -->
+        <div class="row h-75" >
+          <div id="blocklyDiv" style="height: 100%;width: 100%;"></div>
+          <xml id="toolbox" style="display: none">
+            <category name="Sentencias" colour="230">
+              <block type="select"></block>
+              <block type="select2"></block>
+              <block type="insert1"></block>
+              <block type="insert2"></block>
+              <block type="update"></block>
+              <block type="update2"></block>
+              <block type="delete"></block>
+              <block type="delete2"></block>
+              <block type="orderby"></block>
+              <block type="limit"></block>
+              <block type="use"></block>
+            </category>
 
-                <category name="Operadores" colour="200">
-                  <block type="condicion"></block>
-                  <block type="operaciones"></block>
-                
-                </category>
+            <category name="Atributos" colour="120">
+              <block type="Tablas"></block>
+              <block type="set"></block>
+            </category>
 
-                <category name="Valores" colour="65">
-                  <block type="campo"></block>
-                  <block type="valor"></block>
-                </category>
+            <category name="Operadores" colour="200">
+              <block type="condicion"></block>
+              <block type="operaciones"></block>
+            </category>
 
-            </xml>
-
+            <category name="Valores" colour="65">
+              <block type="campo"></block>
+              <block type="valor"></block>
+            </category>
+          </xml>
         </div>
-        
+
         <!--             DIV DERECHO ABAJO                  -->
-        <div class="row" style="height: 20%;background-color: yellow;">
-          Aqui ira la consola
+        <div class="row h-25" >
+          <div class="container">
+            <ul id="tab-list" class="nav nav-tabs" role="tablist">
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  role="tab"
+                  data-toggle="tab"
+                  href="#consolaCuerpo"
+                  id="Tab"
+                  >Consola
+                </a>
+              </li>
+            </ul>
+          <!-- Tab panes -->
+            <div id="tab-content" class="tab-content" style ="height: 75%;">
+              <div id="consolaCuerpo" class="tab-pane fade" style ="height:90%;overflow-y: scroll; " >
+                <div class="console">
+                  <p class="console-body" id="console-body-consola">
+                    
+                  </p>
+                </div>
+              </div>
+          
+            </div>
+        
+          </div>
+        </div>
+      
+      
+      </div>
+    </div>
+
+    <!--                                              MODAL DE MENSAJE LUP      IN              -->
+    <div class="modal fade" id="modalLoginOut">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">LUP DE RETORNO</h5>
+          </div>
+          <div class="modal-body">
+            <div class="console">
+              <p class="console-body-out" id="console-body-out">
+                PRUEBA
+              </p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="buttonLUPIN">
+              <i class="el">OK</i>
+            </button>
+          </div>
         </div>
       </div>
     </div>
-    <script src="../js/Componentes/generateCode.js"></script>
+
+    <!--                                              MODAL DE MENSAJE LUP      OUT             -->
+    <div class="modal fade" index="-1" id="modalData">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">LUP GENERADO</h5>
+          </div>
+          <div class="modal-body">
+            <div class="console">
+              <p class="console-body" id="console-body">
+                PRUEBA
+              </p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="enviarLupData">
+              ENVIAR
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
+  <script src="../js/Componentes/generateCode.js"></script>
+  <script src="../js/Configuraciones/server.js"></script>
+  <script src="../js/principiante.js"></script>
+  <script src="../LUP/Arbol/js/Logout.js"></script>
+  <script src="../LUP/Arbol/js/MensajeError.js"></script>
+  <script src="../LUP/Gramatica/GramaticaLup.js"></script>
 </html>

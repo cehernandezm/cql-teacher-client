@@ -8,7 +8,7 @@ Blockly.Javascript['Tablas'] = function(block){
 
 function generarCodigo(){
     var code = Blockly.JavaScript.workspaceToCode(workspacePlayground);
-    console.log(code);
+    return code;
 }
 
 //--------------------------------------------------------------------- SELECT----------------------------------------------------------

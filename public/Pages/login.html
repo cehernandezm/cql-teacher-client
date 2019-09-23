@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="../css/Login.css">
     
         
-
+        
         <!-- --------------------------------------------- Verificar si existe cookie -------------------------------------------- -->
         <script>
             var cookie = document.cookie;
@@ -49,7 +49,7 @@
             </div>
         </div>
     
-        <!--                                              MODAL DE MENSAJE LUP                    -->
+        <!--                                              MODAL DE MENSAJE LUP      OUT             -->
         <div class = "modal fade" id = "modalLogin">
             <div class = "modal-dialog">
                 <div class = "modal-content">
@@ -69,11 +69,33 @@
                 </div>
             </div>
         </div>
+
+
+        <!--                                              MODAL DE MENSAJE LUP      IN              -->
+        <div class = "modal fade" id = "modalLoginOut">
+            <div class = "modal-dialog">
+                <div class = "modal-content">
+                    <div class = "modal-header">
+                        <h5 class = "modal-title"> LUP DE RETORNO </h5>
+                    </div>
+                    <div class = "modal-body">
+                        <div class = "console">
+                            <p class = "console-body-out" id = "console-body-out">
+                                PRUEBA
+                            </p>
+                        </div>   
+                    </div>
+                    <div class = "modal-footer">
+                    <button type = "button" class = "btn btn-primary" id = "buttonLUPIN" > <i class="el">OK</i> </button>
+                    </div>
+                </div>
+            </div>
+        </div>
         
     </body>
     
    
-
+    <script src="../js/Configuraciones/server.js"></script>
     <script src="../js/LoginF.js" type="text/javascript"></script>
     <script src="../LUP/Gramatica/GramaticaLup.js"></script>
 

@@ -72,12 +72,12 @@
   }
 */
 var GramaticaLup = (function(){
-var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o};
+var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,8],$V1=[1,16],$V2=[8,23];
 var parser = {trace: function trace () { },
 yy: {},
-symbols_: {"error":2,"inicio":3,"instrucciones":4,"inLogin":5,"CORIZQ":6,"MAS":7,"LOGIN":8,"CORDER":9,"SUCCESS":10,"MENOS":11,"FAIL":12,"$accept":0,"$end":1},
-terminals_: {2:"error",6:"CORIZQ",7:"MAS",8:"LOGIN",9:"CORDER",10:"SUCCESS",11:"MENOS",12:"FAIL"},
-productions_: [0,[3,1],[3,1],[4,1],[5,11],[5,11]],
+symbols_: {"error":2,"inicio":3,"instrucciones":4,"inLogin":5,"inLogout":6,"datas":7,"CORIZQ":8,"MAS":9,"LOGIN":10,"CORDER":11,"SUCCESS":12,"MENOS":13,"FAIL":14,"LOGOUT":15,"data":16,"mensajeError":17,"ERROR":18,"LINE":19,"ENTERO":20,"COLUMN":21,"TYPE":22,"CUERPO":23,"DESC":24,"cuerpo":25,"$accept":0,"$end":1},
+terminals_: {2:"error",8:"CORIZQ",9:"MAS",10:"LOGIN",11:"CORDER",12:"SUCCESS",13:"MENOS",14:"FAIL",15:"LOGOUT",18:"ERROR",19:"LINE",20:"ENTERO",21:"COLUMN",22:"TYPE",23:"CUERPO",24:"DESC"},
+productions_: [0,[3,1],[3,1],[4,1],[4,1],[4,1],[5,11],[5,11],[6,11],[6,11],[7,2],[7,1],[16,1],[17,44],[25,2],[25,1]],
 performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* action[1] */, $$ /* vstack */, _$ /* lstack */) {
 /* this == yyval */
 
@@ -89,19 +89,43 @@ break;
 case 2:
  console.error('Este es un error sintáctico: ' + yytext + ', en la linea: ' + this._$.first_line + ', en la columna: ' + this._$.first_column); 
 break;
-case 3:
+case 3: case 4:
 this.$ = []; this.$.push($$[$0]);
 break;
-case 4:
+case 5:
+this.$ = $$[$0];
+break;
+case 6:
  this.$ = new Login(true);
 break;
-case 5:
+case 7:
  this.$ = new Login(false);
+break;
+case 8:
+ this.$ = new Logout(true);
+break;
+case 9:
+ this.$ = new Logout(false);
+break;
+case 10:
+this.$ = $$[$0-1]; this.$.push($$[$0])
+break;
+case 11:
+this.$ = []; this.$.push($$[$0])
+break;
+case 12: case 15:
+this.$ = $$[$0]
+break;
+case 13:
+this.$ = new MensajesError($$[$0-8],$$[$0-17],$$[$0-35],$$[$0-26]);
+break;
+case 14:
+this.$ = $$[$0-1] + "\n" + $$[$0]
 break;
 }
 },
-table: [{2:[1,3],3:1,4:2,5:4,6:[1,5]},{1:[3]},{1:[2,1]},{1:[2,2]},{1:[2,3]},{7:[1,6]},{8:[1,7]},{9:[1,8]},{6:[1,9]},{10:[1,10],12:[1,11]},{9:[1,12]},{9:[1,13]},{6:[1,14]},{6:[1,15]},{11:[1,16]},{11:[1,17]},{8:[1,18]},{8:[1,19]},{9:[1,20]},{9:[1,21]},{1:[2,4]},{1:[2,5]}],
-defaultActions: {2:[2,1],3:[2,2],4:[2,3],20:[2,4],21:[2,5]},
+table: [{2:[1,3],3:1,4:2,5:4,6:5,7:6,8:[1,7],16:8,17:9},{1:[3]},{1:[2,1]},{1:[2,2]},{1:[2,3]},{1:[2,4]},{1:[2,5],8:[1,11],16:10,17:9},{9:[1,12]},o($V0,[2,11]),o($V0,[2,12]),o($V0,[2,10]),{9:[1,13]},{10:[1,14],15:[1,15],18:$V1},{18:$V1},{11:[1,17]},{11:[1,18]},{11:[1,19]},{8:[1,20]},{8:[1,21]},{8:[1,22]},{12:[1,23],14:[1,24]},{12:[1,25],14:[1,26]},{9:[1,27]},{11:[1,28]},{11:[1,29]},{11:[1,30]},{11:[1,31]},{19:[1,32]},{8:[1,33]},{8:[1,34]},{8:[1,35]},{8:[1,36]},{11:[1,37]},{13:[1,38]},{13:[1,39]},{13:[1,40]},{13:[1,41]},{20:[1,42]},{10:[1,43]},{10:[1,44]},{15:[1,45]},{15:[1,46]},{8:[1,47]},{11:[1,48]},{11:[1,49]},{11:[1,50]},{11:[1,51]},{13:[1,52]},{1:[2,6]},{1:[2,7]},{1:[2,8]},{1:[2,9]},{19:[1,53]},{11:[1,54]},{8:[1,55]},{9:[1,56]},{21:[1,57]},{11:[1,58]},{20:[1,59]},{8:[1,60]},{13:[1,61]},{21:[1,62]},{11:[1,63]},{8:[1,64]},{9:[1,65]},{22:[1,66]},{11:[1,67]},{23:[1,68]},{8:[1,69]},{13:[1,70]},{22:[1,71]},{11:[1,72]},{8:[1,73]},{9:[1,74]},{24:[1,75]},{11:[1,76]},{23:[1,78],25:77},{8:[1,79],23:[1,80]},o($V2,[2,15]),{13:[1,81]},o($V2,[2,14]),{24:[1,82]},{11:[1,83]},{8:[1,84]},{13:[1,85]},{18:[1,86]},{11:[1,87]},o($V0,[2,13])],
+defaultActions: {2:[2,1],3:[2,2],4:[2,3],5:[2,4],48:[2,6],49:[2,7],50:[2,8],51:[2,9]},
 parseError: function parseError (str, hash) {
     if (hash.recoverable) {
         this.trace(str);
@@ -683,28 +707,44 @@ var YYSTATE=YY_START;
 switch($avoiding_name_collisions) {
 case 0:
 break;
-case 1:return 6
+case 1:return 20
 break;
-case 2:return 9
+case 2:return 8
 break;
-case 3:return 7
+case 3:return 11
 break;
-case 4:return 11 
+case 4:return 9
 break;
-case 5:return 8;
+case 5:return 13 
 break;
-case 6:return 12;
+case 6:return 10
 break;
-case 7:return 10;
+case 7:return 15
 break;
-case 8:
+case 8:return 14
 break;
-case 9: console.error('Este es un error léxico: ' + yy_.yytext + ', en la linea: ' + yy_.yylloc.first_line + ', en la columna: ' + yy_.yylloc.first_column); 
+case 9:return 12
+break;
+case 10:return 18
+break;
+case 11:return 19
+break;
+case 12:return 21
+break;
+case 13:return 22
+break;
+case 14:return 24
+break;
+case 15:return 23
+break;
+case 16:
+break;
+case 17: console.error('Este es un error léxico: ' + yy_.yytext + ', en la linea: ' + yy_.yylloc.first_line + ', en la columna: ' + yy_.yylloc.first_column); 
 break;
 }
 },
-rules: [/^(?:[ \r\t\n]+)/i,/^(?:\[)/i,/^(?:\])/i,/^(?:\+)/i,/^(?:-)/i,/^(?:LOGIN\b)/i,/^(?:FAIL\b)/i,/^(?:SUCCESS\b)/i,/^(?:$)/i,/^(?:.)/i],
-conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9],"inclusive":true}}
+rules: [/^(?:[ \r\t\n]+)/i,/^(?:[0-9]+)/i,/^(?:\[)/i,/^(?:\])/i,/^(?:\+)/i,/^(?:-)/i,/^(?:LOGIN\b)/i,/^(?:LOGOUT\b)/i,/^(?:FAIL\b)/i,/^(?:SUCCESS\b)/i,/^(?:ERROR\b)/i,/^(?:LINE\b)/i,/^(?:COLUMN\b)/i,/^(?:TYPE\b)/i,/^(?:DESC\b)/i,/^(?:((?!(\[(\+|-))).+))/i,/^(?:$)/i,/^(?:.)/i],
+conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17],"inclusive":true}}
 });
 return lexer;
 })();
