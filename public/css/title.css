@@ -6,14 +6,13 @@
 }
 
 body{
-    background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 110%);
+    background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 90%);
     font-family: 'Ubuntu', sans-serif;
-    
+    height: 100%;
 }
 
 .console {
   background-color: #000;
-  padding: 1%;
   color: #ccc;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 1em;

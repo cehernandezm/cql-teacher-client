@@ -31,9 +31,9 @@
       if (!username) window.location.href = "/";
     </script>
   </head>
-  <body onload="configurarBlockly()">
+  <body onload="configurarBlockly(), getInfo()">
     <!--                             CABECERA                                    -->
-    <div class="row" >
+    <div class="row" style="height: 10%" >
       <div class="col-11">
         <h1 class="special">Principiante :]</h1>
       </div>
@@ -44,16 +44,26 @@
       </div>
     </div>
     <br>
-    <div class="row h-100">
+    <div class="row" style="height: 90%">
       <!--                   DIV IZQUIERDO                -->
-      <div class="col-2" style="background-color: black;">
-        Aqui aparecera las bases de datos
+      <div class="col-sm-3" >
+        <ul class = "list-group" id ="infoBases">
+          <li class ="list-group-item list-group-item-success"> <a data-toggle = "collapse" href="#tabladb1">BASE 1</a>
+            <ul class ="list-group">
+              <li class ="list-group-item active collapse" id="tabladb1">TABLA1</li>
+              <li class ="list-group-item active collapse" id="tabladb1">TABLA2</li>
+            </ul>
+          </li>
+        </ul>
         <button type="button" data-toggle="modal" data-target="#modalData">
           Generar
         </button>
       </div>
+      <div class ="col-sm-0">
+
+      </div>
       <!--                   DIV DERECHO            -->
-      <div class="col-9" style="margin-left:50px;">
+      <div class="col-sm-8" >
         <!--                DIV DERECHO ARRIBA   -->
         <div class="row h-75" >
           <div id="blocklyDiv" style="height: 100%;width: 100%;"></div>
@@ -177,4 +187,5 @@
   <script src="../LUP/Gramatica/GramaticaLup.js"></script>
   <script src="../LUP/Arbol/js/Mensaje.js"></script>
   <script src ="../LUP/Arbol/js/Consulta.js"></script>
+  <script src="../LUP/Arbol/js/Estructura.js"></script>
 </html>
