@@ -6,11 +6,7 @@
     <!--              Bootstrap CSS                                   -->
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
 
-    <!--                        Bootstrap  JS    -->
-    <script
-      src="../js/jquery-3.3.1.slim.min.js"
-      crossorigin="anonymous"
-    ></script>
+   
     <script src="../js/popper.min.js" crossorigin="anonymous"></script>
     <script src="../js/bootstrap.min.js" crossorigin="anonymous"></script>
 
@@ -49,13 +45,13 @@
       if (!username) window.location.href = "/";
     </script>
   </head>
-  <body>
+  <body onload="getInfo()">
     <!--                             CABECERA                                    -->
     <div class="row" style="height: 10%;">
         <h1 class="special">Avanzado :]</h1>
 
       <div class="col-1 text-right">
-        <button type="button" class="btn btn-danger" onclick="getOut()">
+        <button type="button" class="btn btn-danger" id="LogOut">
           Salir
         </button>
       </div>
@@ -63,9 +59,13 @@
 
     <div class="row" >
       <!--                   DIV IZQUIERDO                -->  
-      <div class="col-2">
-        Aqui aparecera las bases de datos
-        
+      <div class="col-sm-3" >
+        <ul class = "list-group" id ="infoBases">
+          <li class ="list-group-item list-group-item-success"> <a data-toggle = "collapse" href="#tabladb1">BASE 1</a>
+            <ul class ="list-group">
+            </ul>
+          </li>
+        </ul>
       </div>
       <!--                   DIV DERECHO            -->
       <div class="col-8" style="margin-left:50px;">
@@ -79,9 +79,10 @@
                         
                         <div class="mx-auto order-0">
                             <a class="navbar-brand mx-auto" id="newTab" href="#">Nuevo</a>
-                            <a class="navbar-brand mx-auto" href="#">Abrir</a>
-                            <a class="navbar-brand mx-auto" href="#">Guardar</a>
-                            <a class="navbar-brand mx-auto" id="ejecutarCode" href="#">Ejecutar</a>
+                            <a class="navbar-brand mx-auto" href="#" id="openFile">Abrir</a>
+                            <a class="navbar-brand mx-auto" href="#" onclick="dowload()">Guardar</a>
+                            <input type="file" id="file" style="display:none" multiple onchange="handleFiles(this.files)">
+                            <a class="navbar-brand mx-auto" id="ejecutarCode"  data-toggle="modal" data-target="#modalData2" href="#">Ejecutar</a>
                             
                         </div>
                       </nav>
@@ -93,11 +94,11 @@
                 <div class="row">
                     <div class="col-12">
                        <!--                                PESTAÑAS                                         -->
-                       <ul id="tab-list" class="nav nav-tabs" role="tablist">
+                       <ul id="tab-list2" class="nav nav-tabs" role="tablist">
 
                       </ul>
                       <!-- Tab panes -->
-                      <div id="tab-content" class="tab-content  pestaña"></div>
+                      <div id="tab-content2" class="tab-content  pestaña"></div>
                         
                     </div>
                 </div>    
@@ -106,12 +107,94 @@
         </div>
         <BR>
         <!--             DIV DERECHO ABAJO                  -->
-        <div class="row" >
-          Aqui ira la consola
+        <div class="row h-25" >
+          <div class="container">
+            <ul id="tab-list" class="nav nav-tabs" role="tablist">
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  role="tab"
+                  data-toggle="tab"
+                  href="#consolaCuerpo"
+                  id="Tab"
+                  >Consola
+                </a>
+              </li>
+            </ul>
+          <!-- Tab panes -->
+            <div id="tab-content" class="tab-content" style ="height: 75%;">
+              <div id="consolaCuerpo" class="tab-pane fade" style ="height:90%;overflow-y: scroll; " >
+                <div class="console">
+                  <p class="console-body" id="console-body-consola">
+                    
+                  </p>
+                </div>
+              </div>
+          
+            </div>
+        
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--                                              MODAL DE MENSAJE LUP      IN              -->
+    <div class="modal fade" id="modalLoginOut">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">LUP DE RETORNO</h5>
+          </div>
+          <div class="modal-body">
+            <div class="console">
+              <p class="console-body-out" id="console-body-out">
+                PRUEBA
+              </p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="buttonLUPIN">
+              <i class="el">OK</i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--                                              MODAL DE MENSAJE LUP      OUT             -->
+    <div class="modal fade" index="-1" id="modalData2">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">LUP GENERADO</h5>
+          </div>
+          <div class="modal-body">
+            <div class="console">
+              <p class="console-body" id="console-body">
+                PRUEBA
+              </p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="enviarLupData2">
+              ENVIAR
+            </button>
+          </div>
         </div>
       </div>
     </div>
     
-    <script src="../js/avanzado.js"></script>
+    
   </body>
+    <script src="../js/avanzado.js"></script>
+    <script src="../js/Componentes/GenerateLup.js"></script>
+    <script src="../js/Componentes/generateCode.js"></script>
+    <script src="../js/Configuraciones/server.js"></script>
+    <script src="../LUP/Arbol/js/Logout.js"></script>
+    <script src="../LUP/Arbol/js/MensajeError.js"></script>
+    <script src="../LUP/Gramatica/GramaticaLup.js"></script>
+    <script src="../LUP/Arbol/js/Mensaje.js"></script>
+    <script src ="../LUP/Arbol/js/Consulta.js"></script>
+    <script src="../LUP/Arbol/js/Estructura.js"></script>
 </html>

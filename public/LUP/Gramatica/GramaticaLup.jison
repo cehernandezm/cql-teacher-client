@@ -85,7 +85,9 @@ consulta : CORIZQ MAS DATA CORDER cuerpo CORIZQ MENOS DATA CORDER               
 
 
 cuerpo : cuerpo CUERPO                              {$$ = $1 + "\n" + $2}
+       | cuerpo ENTERO                              {$$ = $1 + "\n" + $2}
        | CUERPO                                     {$$ = $1}
+       | ENTERO                                     {$$ = $1}
        ;
 
 allData : indatabases                               {$$ = new Estructura({bases: $1});}

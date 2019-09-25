@@ -8,7 +8,7 @@ $('#LogOut').on('click',function(e){
     var cookie = document.cookie;
     var username = cookie.split("=")[1];
     let paquete = codigoLogout(username);
-    
+    console.log(paquete);
     $.ajax({
         type : "POST",
         dataType : "json",
