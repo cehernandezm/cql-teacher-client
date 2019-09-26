@@ -101,7 +101,6 @@ $("#modalData2").on("show.bs.modal", function(e) {
     let seleccion = editor.getSelection();
     if (!seleccion) seleccion = editor.getValue();
 
-    console.log(seleccion);
     document.getElementById("console-body").innerHTML = codigoConsulta(
       seleccion,
       username
@@ -123,7 +122,6 @@ $("#enviarLupData2").on("click", function(e) {
     let seleccion = editor.getSelection();
     if (!seleccion) seleccion = editor.getValue();
 
-    console.log(seleccion);
     let paquete = codigoConsulta(seleccion, username);
 
     $.ajax({
