@@ -5,9 +5,9 @@ Aplicacion WEB que compila un lenguaje CQL para interactuar con bases de datos n
 ## Getting Started
 
 + Clonar este repositorio
-+ Instalar express 
++ Instalar respectivos Paquetes
 ```
-npm install --save express
+npm install --save paquete
 ```
 + Iniciar Servidor
 ```
