@@ -1,6 +1,6 @@
 # CQL TEACHER
 
-Es la parte del cliente
+Aplicacion WEB que compila un lenguaje CQL para interactuar con bases de datos no relaciones.
 
 ## Getting Started
 
@@ -23,6 +23,7 @@ npm index.js
 ## Built With
 
 * [NodeJS](https://nodejs.org/es/) - Servidor de Aplicacion para Cliente
+* [Jison](https://zaa.ch/jison/) - Parser
 
 ## Contributing
 
